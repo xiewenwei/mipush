@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["xiaoronglv@hotmail.com"]
   spec.summary       = %q{小米消息推送}
   spec.description   = %q{目前仅仅实现了 Android 的推送功能，文档稍后补上}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/xiaoronglv/mipush"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
