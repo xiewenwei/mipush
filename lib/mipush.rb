@@ -1,3 +1,5 @@
+require "uri"
+require "rest_client"
 require "mipush/version"
 require "mipush/message"
 require "mipush/ios_message"
