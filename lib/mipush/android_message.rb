@@ -24,7 +24,7 @@ module Mipush
       @description  = options[:description]
       @payload      = options[:payload]
       @pass_through = options[:pass_through] || NTF_CENTER_NTF
-      @notify_type  = options[:notify_type] || NOTIFY_TYPE_DEFAULT_ALL
+      @notify_type  = options[:notify_type] || NOTIFY_TYPE_DEFAULT_SOUND
       @restricted_package_name = options[:restricted_package_name]
       @secret_key = options[:secret_key]
     end
@@ -37,8 +37,8 @@ module Mipush
       string += "payload=#{URI.encode @payload.to_s}&" unless @payload.nil?
       string += "pass_through=#{URI.encode @pass_through.to_s}&" unless @pass_through.nil?
       string += "notify_type=#{URI.encode @notify_type.to_s}&" unless @notify_type.nil?
-      string += "restricted_package_name=#{URI.encode @restricted_package_name.to_s}" unless @restricted_package_name.nil?
-
+      string += "restricted_package_name=#{URI.encode @restricted_package_name.to_s}&" unless @restricted_package_name.nil?
+      string += "extra.notify_effect=1"
       string
     end
   end
