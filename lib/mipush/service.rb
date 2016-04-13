@@ -20,11 +20,23 @@ module Mipush
     end
 
     #
+    # @note 发送推送到所有设备
+    #
+    # @param [Mipush::Message] message 推送的消息体
+    #
+    # @return [RestClient::Response]
+    #
+    def self.send_all(message)
+      send_message(SEND_ENDPOINT_ALL, message)
+    end
+
+    #
     # @note 发送推送
     #
     # @param [String] endpoint 地址
     # @param [Mipush::Message] message 推送的消息体
     # @param [Hash] params 额外参数
+    # @return [RestClient::Response]
     #
     def self.send_message(endpoint, message, params = {})
       url = "#{endpoint}?#{message.to_params}"
