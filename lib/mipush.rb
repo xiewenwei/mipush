@@ -8,4 +8,6 @@ require "mipush/service"
 
 module Mipush
   SEND_ENDPOINT_REGID = "https://api.xmpush.xiaomi.com/v2/message/regid"
+
+  SEND_ENDPOINT_ALL = 'https://api.xmpush.xiaomi.com/v2/message/all'
 end
