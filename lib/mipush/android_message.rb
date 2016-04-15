@@ -29,17 +29,14 @@ module Mipush
       @secret_key = options[:secret_key]
     end
 
-    # 重构这一端烂代码
+    # 已重构
     def to_params
-      string = ""
-      string += "title=#{URI.encode @title.to_s}&" unless @title.nil?
-      string += "description=#{URI.encode @description.to_s}&" unless @description.nil?
-      string += "payload=#{URI.encode @payload.to_s}&" unless @payload.nil?
-      string += "pass_through=#{URI.encode @pass_through.to_s}&" unless @pass_through.nil?
-      string += "notify_type=#{URI.encode @notify_type.to_s}&" unless @notify_type.nil?
-      string += "restricted_package_name=#{URI.encode @restricted_package_name.to_s}&" unless @restricted_package_name.nil?
-      string += "extra.notify_effect=1"
-      string
+      self.instance_variables.each_with_object({}) do |variable, params|
+        value = self.instance_variable_get(variable)
+        unless value.nil?
+          params[variable.to_s.delete('@')] = value
+        end
+      end.merge('extra.notify_effect' => 1).to_param
     end
   end
 end
