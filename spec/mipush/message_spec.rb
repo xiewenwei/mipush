@@ -29,6 +29,15 @@ describe 'Message' do
 
     end
 
+    it 'should have custom extra info' do
+
+      title = 'May the force be with you'
+
+      message = Mipush::AndroidMessage.new(extra: {:'extra.title' => title})
+
+      expect(message.to_params).to include(CGI.escape title)
+    end
+
   end
 
 

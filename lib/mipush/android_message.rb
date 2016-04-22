@@ -16,7 +16,7 @@ module Mipush
     PASS_THROUGH_NTF = 1
 
     attr_accessor :payload, :pass_through, :notify_type, :restricted_package_name,
-      :notify_id, :enable_flow_controll
+      :notify_id, :enable_flow_controll, :extra
 
     # 有些参数还没加上
     def initialize(options={})
@@ -27,6 +27,7 @@ module Mipush
       @notify_type  = options[:notify_type] || NOTIFY_TYPE_DEFAULT_SOUND
       @restricted_package_name = options[:restricted_package_name]
       @secret_key = options[:secret_key]
+      @extra = options[:extra] || {}
     end
 
     # 已重构
@@ -36,7 +37,7 @@ module Mipush
         unless value.nil?
           params[variable.to_s.delete('@')] = value
         end
-      end.merge('extra.notify_effect' => 1).to_param
+      end.merge('extra.notify_effect' => 1).merge(self.extra).to_param
     end
   end
 end
